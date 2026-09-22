@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALJ Papelería y Más — Imprime, Diseña, Personaliza</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== BOTÓN DE TEMA ===== -->
+<button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+  <span class="theme-toggle__dot"></span>
+</button>
+
+<!-- ===== ENCABEZADO ===== -->
+<header class="header">
+  <div class="header__ribbon"></div>
+  <div class="header__inner">
+    <div class="brand">
+      <span class="brand__mark">✂️🖇️</span>
+      <div class="brand__text">
+        <h1 class="brand__name">ALJ <span>Papelería</span> y Más</h1>
+        <p class="brand__tag">Imprime · Diseña · Personaliza</p>
+      </div>
+    </div>
+    <a class="header__whatsapp" href="https://wa.me/18295764196" target="_blank" rel="noopener">
+      <span>829-576-4196</span>
+    </a>
+  </div>
+  <p class="header__pitch">Todo lo que necesitas en un solo lugar: impresiones, forrado de cuadernos, acabados y paquetes escolares completos — con calidad, rapidez y el mejor servicio.</p>
+</header>
+
+<!-- ===== NAV DE CATEGORÍAS (estilo pestañas de libreta) ===== -->
+<nav class="catnav" aria-label="Categorías">
+  <div class="catnav__scroll">
+    <a href="#impresiones">Impresiones</a>
+    <a href="#fotocopias">Fotocopias</a>
+    <a href="#fotografico">Papel fotográfico</a>
+    <a href="#forrado">Forrado de cuadernos</a>
+    <a href="#acabados">Acabados</a>
+    <a href="#servicios">Servicios de papelería</a>
+    <a href="#paquetes">Paquetes escolares</a>
+  </div>
+</nav>
+
+<main id="catalogo"></main>
+
+<!-- ===== NOTA DE CIERRE ===== -->
+<section class="closing">
+  <p>¿Tienes una idea o quieres algo diferente a lo que ves aquí? Escríbenos por WhatsApp y lo cotizamos juntos.</p>
+  <a class="btn btn--ghost" href="https://wa.me/18295764196?text=Hola%20ALJ%20Papeler%C3%ADa%2C%20tengo%20una%20idea%20que%20quiero%20cotizar" target="_blank" rel="noopener">Contactar por WhatsApp</a>
+</section>
+
+<footer class="footer">
+  <p class="footer__brand">ALJ Papelería y Más</p>
+  <p>Tu idea, nuestro compromiso 💗</p>
+</footer>
+
+<!-- ===== BOTÓN FLOTANTE DE CARRITO ===== -->
+<button id="cartFab" class="cart-fab" aria-label="Ver carrito">
+  🛒 <span id="cartCount" class="cart-fab__count">0</span>
+</button>
+
+<!-- ===== PANEL LATERAL DE CARRITO ===== -->
+<div id="cartOverlay" class="overlay"></div>
+<aside id="cartDrawer" class="drawer" aria-hidden="true">
+  <div class="drawer__head">
+    <h2>Tu pedido</h2>
+    <button id="cartClose" class="icon-btn" aria-label="Cerrar carrito">✕</button>
+  </div>
+  <div id="cartItems" class="drawer__items">
+    <p class="drawer__empty">Todavía no has agregado nada. Explora el catálogo y dale a "Agregar".</p>
+  </div>
+  <div class="drawer__foot">
+    <div class="drawer__total">
+      <span>Total estimado</span>
+      <strong id="cartTotal">RD$0</strong>
+    </div>
+    <p class="drawer__note">Los precios marcados "desde" pueden variar según cantidad de material y detalle del trabajo. Se confirma por WhatsApp.</p>
+    <button id="checkoutBtn" class="btn btn--primary btn--block" disabled>Continuar al pago</button>
+  </div>
+</aside>
+
+<!-- ===== MODAL DE PAGO ===== -->
+<div id="checkoutOverlay" class="overlay"></div>
+<div id="checkoutModal" class="modal" aria-hidden="true">
+  <div class="modal__card">
+    <div class="modal__head">
+      <h2>¿Cómo vas a pagar?</h2>
+      <button id="checkoutClose" class="icon-btn" aria-label="Cerrar">✕</button>
+    </div>
+
+    <div class="pay-options">
+      <label class="pay-option">
+        <input type="radio" name="payMethod" value="transferencia" checked>
+        <span class="pay-option__box">
+          <strong>Transferencia bancaria</strong>
+          <small>BHD o Banreserva</small>
+        </span>
+      </label>
+      <label class="pay-option">
+        <input type="radio" name="payMethod" value="efectivo">
+        <span class="pay-option__box">
+          <strong>Efectivo</strong>
+          <small>Pago al recoger o entregar</small>
+        </span>
+      </label>
+    </div>
+
+    <div id="bankChoice" class="bank-choice">
+      <p class="bank-choice__label">Selecciona el banco:</p>
+      <div class="bank-grid">
+        <label class="bank-option">
+          <input type="radio" name="bank" value="BHD" checked>
+          <span class="bank-option__box">
+            <strong>BHD</strong>
+            <small>Cuenta de ahorros/corriente</small>
+          </span>
+        </label>
+        <label class="bank-option">
+          <input type="radio" name="bank" value="Banreserva">
+          <span class="bank-option__box">
+            <strong>Banreserva</strong>
+            <small>Cuenta de ahorros/corriente</small>
+          </span>
+        </label>
+      </div>
+      <div id="bankDetails" class="bank-details"></div>
+    </div>
+
+    <div class="modal__summary">
+      <div class="modal__summary-row">
+        <span>Productos seleccionados</span>
+        <strong id="modalItemCount">0</strong>
+      </div>
+      <div class="modal__summary-row modal__summary-row--total">
+        <span>Total estimado</span>
+        <strong id="modalTotal">RD$0</strong>
+      </div>
+    </div>
+
+    <button id="sendWhatsapp" class="btn btn--primary btn--block">Confirmar pedido por WhatsApp</button>
+    <p class="modal__hint">Se abrirá WhatsApp con tu pedido y método de pago ya escrito, listo para enviar a ALJ Papelería.</p>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
